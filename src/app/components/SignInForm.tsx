@@ -44,6 +44,7 @@ export default function SignInForm() {
             .then((res) => {
                 setBanner({ message: res.message, state: res.state })
                 if (res.state === 'success') {
+                    localStorage.setItem('token', res.token)
                     setTimeout(() => {
                         // 라우팅
                         router.replace("/");

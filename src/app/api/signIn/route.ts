@@ -42,7 +42,28 @@ export async function GET(request: NextRequest) {
             const isMatched = await bcrypt.compare(pw, user.pw);
 
             if (isMatched) {
-                return new NextResponse(JSON.stringify({ message: '로그인에 성공함!', state: 'success' }), {
+                /**--------------------------------------
+                * jwt 로직
+                --------------------------------------*/
+                const jwt = require('jsonwebtoken');
+
+                //id랑 name 넣고
+                const payload = {
+                    _id: user._id,
+                    id: user.loginId,
+                    name: user.name,
+                    isAdmin: true,
+                };
+
+                const jwtOption = {
+                    expiresIn: "1d",
+                };
+
+                const token = jwt.sign(payload, process.env.JWT_SECRET, jwtOption);
+
+
+
+                return new NextResponse(JSON.stringify({ message: '로그인에 성공함!', state: 'success', token, payload }), {
                     status: 200,
                 });
             } else {
