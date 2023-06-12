@@ -2,21 +2,30 @@
 
 import { useRouter } from 'next/navigation';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import { BannerData } from './Banner';
+import Banner, { BannerData } from './Banner';
 import Link from 'next/link';
 import { signIn } from '@/services/signIn';
 
-export default function SignInForm() {
 
-    type Form = {
-        id: string,
-        pw: string
-    }
+type Form = {
+    id: string,
+    pw: string
+}
+
+
+export default function SignInForm() {
+    // 라우팅
+    const router = useRouter();
+
+
 
     const [form, setForm] = useState<Form>({
         id: '',
         pw: '',
     })
+
+    // 배너
+    const [banner, setBanner] = useState<BannerData | null>(null);
 
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +41,22 @@ export default function SignInForm() {
 
         // 로그인
         signIn(form)
-
-
-
+            .then((res) => {
+                setBanner({ message: res.message, state: res.state })
+                if (res.state === 'success') {
+                    setTimeout(() => {
+                        // 라우팅
+                        router.replace("/");
+                    }, 1000)
+                } else {
+                    setTimeout(() => {
+                        setBanner(null);
+                    }, 1000)
+                }
+            })
+            .catch(() => {
+                setBanner({ message: '전송실패!', state: 'error' });
+            })
     }
 
 
@@ -43,6 +65,8 @@ export default function SignInForm() {
 
     return <section className='flex justify-center items-center w-screen h-screen'>
         <div>
+            {banner && <Banner banner={banner} />}
+
             <form onSubmit={onSubmit} className='w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white'>
                 <p className='text-center'>로그인</p>
                 <span className='w-full border-2'></span>

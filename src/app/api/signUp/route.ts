@@ -1,6 +1,6 @@
 import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
 import dbConnect from '@/lib/db/dbConnect';
-import User, { UserSchema } from '@/lib/db/user/user.model';
+import User from '@/lib/db/user/user.model';
 import * as yup from 'yup';
 import { NextResponse } from 'next/server'
 
@@ -12,6 +12,7 @@ const bodySchema = yup.object().shape({
 
 export async function POST(req: Request, res: Response) {
     const body = await req.json();
+    
     if (!bodySchema.isValidSync(body)) {
         return new Response(JSON.stringify({ message: '회원가입에 실패함!' }), {
             status: 400,
