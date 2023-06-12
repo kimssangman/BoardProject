@@ -2,6 +2,7 @@ import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
 import dbConnect from '@/lib/db/dbConnect';
 import User, { UserSchema } from '@/lib/db/user/user.model';
 import * as yup from 'yup';
+import { NextResponse } from 'next/server'
 
 const bodySchema = yup.object().shape({
     id: yup.string().required(),
@@ -9,7 +10,7 @@ const bodySchema = yup.object().shape({
     pw: yup.string().required(),
 });
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: Response) {
     const body = await req.json();
     if (!bodySchema.isValidSync(body)) {
         return new Response(JSON.stringify({ message: '회원가입에 실패함!' }), {
@@ -43,12 +44,12 @@ export async function POST(req: Request) {
         const signUp = new User({ index, id, name, pw: hashedPass });
         await signUp.save();
 
-        return new Response(JSON.stringify({ message: '회원가입에 성공함!' }), {
+        return new NextResponse(JSON.stringify({ message: '회원가입에 성공함!' }), {
             status: 200,
         });
     } catch (error) {
         console.error(error);
-        return new Response(JSON.stringify({ message: '회원가입에 실패함!' }), {
+        return new NextResponse(JSON.stringify({ message: '회원가입에 실패함!' }), {
             status: 500,
         });
     }

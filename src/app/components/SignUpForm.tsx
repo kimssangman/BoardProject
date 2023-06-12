@@ -1,6 +1,6 @@
 'use client';
 
-import { signUp } from '@/services/singUp';
+import { signUp } from '@/services/signUp';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import Banner, { BannerData } from './Banner';
@@ -35,7 +35,7 @@ export default function SignUpForm() {
     // 배너
     const [banner, setBanner] = useState<BannerData | null>(null);
 
-    const onchange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setForm(prev => ({
             ...prev,
@@ -70,15 +70,17 @@ export default function SignUpForm() {
             {banner && <Banner banner={banner} />}
 
             <form onSubmit={onSubmit} className='w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white'>
+                <p className='text-center'>회원가입</p>
+                <span className='w-full border-2'></span>
                 {/* id */}
                 <label htmlFor="id" className='font-semibold'>Id</label>
-                <input type="text" id='id' name='id' required autoFocus value={form.id} onChange={onchange} className='text-black' />
+                <input type="text" id='id' name='id' required autoFocus value={form.id} onChange={onChange} className='text-black' />
                 {/* name */}
                 <label htmlFor="name" className='font-semibold'>Name</label>
-                <input type="text" id='name' name='name' required value={form.name} onChange={onchange} className='text-black' />
+                <input type="text" id='name' name='name' required value={form.name} onChange={onChange} className='text-black' />
                 {/* pw */}
                 <label htmlFor="pw" className='font-semibold'>PW</label>
-                <input type="password" id='pw' name='pw' required value={form.pw} onChange={onchange} className='text-black' />
+                <input type="password" id='pw' name='pw' required value={form.pw} onChange={onChange} className='text-black' />
                 <button className='bg-yellow-300 text-black font-bold mt-5 hover:bg-yellow-400'>회원가입</button>
                 <Link href='/' className='bg-green-300 text-black font-bold hover:bg-green-400 text-center'>돌아가기</Link>
             </form>
