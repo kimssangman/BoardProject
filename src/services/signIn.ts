@@ -9,7 +9,11 @@ export async function signIn(form: Form) {
     try {
         const params = new URLSearchParams(form)
         console.log(params)
-        const res = await fetch(`/api/signIn/${params}`)
+        // 동적 params일 경우
+        // const res = await fetch(`/api/posts/[id]`)
+
+        // params 넘길때
+        const res = await fetch(`/api/signIn?${params}`)
 
         if (res.ok) {
             const data = await res.json();

@@ -5,5 +5,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 
 export async function GET(request: NextRequest) {
-    return new Response("Hello, Next.js!");
+    const id = request.nextUrl.searchParams.get('id')
+    const pw = request.nextUrl.searchParams.get('pw')
+
+
+    console.log(id, pw)
+
+    return new Response('Hello, Next.js!')
 }
