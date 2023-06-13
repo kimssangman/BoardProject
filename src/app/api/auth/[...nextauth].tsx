@@ -8,8 +8,8 @@ import User from '@/lib/db/user/user.model';
 export const authOptions = {
     providers: [
         GithubProvider({
-            clientId: "f999d91216b2be253700",
-            clientSecret: "289a3607579760c5c54c814612b7ec2f5fb66f10",
+            clientId: process.env.GITHUB_ID || "",
+            clientSecret: process.env.GITHUB_SECRET || "",
         }),
 
         CredentialsProvider({
@@ -84,6 +84,6 @@ export const authOptions = {
         },
     },
 
-    secret: "qwer1234",
+    secret: process.env.JWT_SECRET,
 };
 export default NextAuth(authOptions);
