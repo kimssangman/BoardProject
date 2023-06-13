@@ -43,7 +43,7 @@ export default function SignInForm() {
         }));
     }
 
-    const onSubmit = (e: FormEvent) => {
+    const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
             setLoading(true);
@@ -53,7 +53,7 @@ export default function SignInForm() {
              * 로그인
              * next-auth signIn 사용
              -------------------------*/
-            const res: any = signIn("credentials", {
+            const res: any = await signIn("credentials", {
                 redirect: false,
                 id: form.id,
                 pw: form.pw,
@@ -63,10 +63,14 @@ export default function SignInForm() {
             setLoading(false);
 
             console.log(res);
-            if (!res?.error) {
+            if (res?.error == null) {
                 router.push(callbackUrl);
             } else {
+                setBanner({ message: '아이디 또는 패스워드 오류', state: 'error' });
                 setError("invalid email or password");
+                setTimeout(() => {
+                    setBanner(null);
+                }, 1000)
             }
         } catch (error: any) {
             setLoading(false);
