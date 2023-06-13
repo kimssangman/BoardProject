@@ -17,7 +17,7 @@ export async function signUp(form: Form) {
 
     const data = await response.json();
 
-    console.log('data', data)
+    // console.log('signUp data >>> ', data)
     if (!response.ok) {
         throw new Error(data.message || '서버 요청 오류')
     }

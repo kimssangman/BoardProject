@@ -1,10 +1,12 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import Banner, { BannerData } from './Banner';
 import Link from 'next/link';
-import { signIn } from '@/services/signIn';
+// import { signIn } from '@/services/signIn';
+import { signIn } from "next-auth/react";
+
 
 
 type Form = {
@@ -18,7 +20,6 @@ export default function SignInForm() {
     const router = useRouter();
 
 
-
     const [form, setForm] = useState<Form>({
         id: '',
         pw: '',
@@ -26,6 +27,12 @@ export default function SignInForm() {
 
     // 배너
     const [banner, setBanner] = useState<BannerData | null>(null);
+
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl") || "/main";
 
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,29 +45,34 @@ export default function SignInForm() {
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
+        try {
+            setLoading(true);
+            setForm({ id: "", pw: "" });
 
-        // 로그인
-        signIn(form)
-            .then((res) => {
-                setBanner({ message: res.message, state: res.state })
-                if (res.state === 'success') {
-                    localStorage.setItem('token', res.token)
-                    setTimeout(() => {
-                        // 라우팅
-                        router.replace("/");
-                    }, 1000)
-                } else {
-                    setTimeout(() => {
-                        setBanner(null);
-                    }, 1000)
-                }
+            /**-------------------------
+             * 로그인
+             * next-auth signIn 사용
+             -------------------------*/
+            const res: any = signIn("credentials", {
+                redirect: false,
+                id: form.id,
+                pw: form.pw,
+                callbackUrl
             })
-            .catch(() => {
-                setBanner({ message: '전송실패!', state: 'error' });
-            })
+
+            setLoading(false);
+
+            console.log(res);
+            if (!res?.error) {
+                router.push(callbackUrl);
+            } else {
+                setError("invalid email or password");
+            }
+        } catch (error: any) {
+            setLoading(false);
+            setError(error);
+        }
     }
-
-
 
 
 
