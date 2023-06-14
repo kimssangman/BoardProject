@@ -1,9 +1,8 @@
-import Image from 'next/image'
 import React from 'react'
 
 export default function MainBanner() {
     return (
-        <header className="relative">
+        <header className="relative mt-[85px]">
             <div className="absolute inset-0 h-[330px]">
                 <img
                     className="w-full h-full object-cover "

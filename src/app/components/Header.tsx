@@ -1,18 +1,24 @@
-import Link from 'next/link'
-import React from 'react'
+'use client'
+
+import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import React from 'react';
 
 export default function Header() {
+    const handleSignOut = () => {
+        signOut();
+    };
+
     return (
-        <header className='flex justify-between items-center p-5 pl-20 bg-lime-600'>
-            <Link href={"/"}>
-                <h4 className='text-2xl font-bold'>{"김상민"}</h4>
-            </Link>
-            <nav className='flex gap-4 bg-slate-200'>
-                <Link href='/'>home</Link>
-                <Link href='/about'>about</Link>
-                <Link href='/posts'>posts</Link>
-                <Link href='/contact'>contact</Link>
-            </nav>
+        <header className="fixed z-10 border-b border-[#ddd] h-[85px] w-screen leading-[85px] bg-white">
+            <h1 className="inline-block absolute left-[6%] text-cyan-700 font-bold">
+                <Link href={"/"}>김상민</Link>
+            </h1>
+            <div className="max-w-screen-xl mx-auto px-14">
+                <nav className="float-right px-4 sm:px-0">
+                    <button onClick={handleSignOut}>로그아웃</button>
+                </nav>
+            </div>
         </header>
-    )
+    );
 }

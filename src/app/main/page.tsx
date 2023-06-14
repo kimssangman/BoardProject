@@ -56,5 +56,16 @@ export default function Profile() {
                 ))}
             </div>
         </main>
+
+
     );
 }
+{/* <section className="max-w-screen-xl mx-auto px-4">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 bg-gray-400">
+                <li className="h-[180px] w-[180px] bg-green-400"></li>
+                <li className="h-[180px] w-[180px] bg-green-400"></li>
+                <li className="h-[180px] w-[180px] bg-green-400"></li>
+                <li className="h-[180px] w-[180px] bg-green-400"></li>
+                <li className="h-[180px] w-[180px] bg-green-400"></li>
+            </ul>
+        </section> */}
