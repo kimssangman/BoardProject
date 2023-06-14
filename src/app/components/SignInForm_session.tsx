@@ -57,13 +57,13 @@ export default function SignInForm() {
 
 
     useEffect(() => {
+        console.log(session.status)
         /**------------------------------------------
          * 사용자 세션이 존재하는 경우에 실행되는 코드
          * 여기에서 원하는 작업을 수행할 수 있습니다.
          * 예를 들면 다른 페이지로 이동하거나 특정 동작을 수행할 수 있습니다.
          ------------------------------------------*/
         if (session.status === "authenticated") {
-            // 
             router.push("/main");
         }
         setLoading(false); // 세션 정보 로딩이 완료됨을 표시
@@ -120,33 +120,39 @@ export default function SignInForm() {
 
 
     if (loading) {
-        return <p>로딩 중</p>
+        <p>로딩 중</p>
+        return
     }
 
 
     return (
-        <div>
-            {loading ? (<section className='flex justify-center items-center w-screen h-screen'>
-                <div>
-                    {banner && <Banner banner={banner} />}
+        <section className='flex justify-center items-center w-screen h-screen'>
+            <div>
+                {banner && <Banner banner={banner} />}
 
-                    <form onSubmit={onSubmit} className='w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white'>
-                        <p className='text-center'>로그인</p>
-                        <span className='w-full border-2'></span>
-                        {/* id */}
-                        <label htmlFor="id" className='font-semibold'>Id</label>
-                        <input className='text-black' type="text" id='id' name="id" required autoFocus value={form.id} onChange={onChange} />
-                        {/* pw */}
-                        <label htmlFor="pw" className='font-semibold'>PW</label>
-                        <input className='text-black' type="password" id='pw' name="pw" required autoFocus value={form.pw} onChange={onChange} />
-                        <button className='bg-yellow-300 text-black font-bold mt-5 hover:bg-yellow-400'>로그인</button>
-                        <Link href='/' className='bg-green-300 text-black font-bold hover:bg-green-400 text-center'>돌아가기</Link>
-                    </form>
-                </div>
-            </section>) : (null)
-            }
+                {session.status === "authenticated" ? (
+                    <p>로그인 성공! Main 페이지로 이동합니다...</p>
+                ) : (
+                    <section className='flex justify-center items-center w-screen h-screen'>
+                        <div>
+                            <form onSubmit={onSubmit} className='w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white'>
+                                <p className='text-center'>로그인</p>
+                                <span className='w-full border-2'></span>
+                                {/* id */}
+                                <label htmlFor="id" className='font-semibold'>Id</label>
+                                <input className='text-black' type="text" id='id' name="id" required autoFocus value={form.id} onChange={onChange} />
+                                {/* pw */}
+                                <label htmlFor="pw" className='font-semibold'>PW</label>
+                                <input className='text-black' type="password" id='pw' name="pw" required autoFocus value={form.pw} onChange={onChange} />
+                                <button className='bg-yellow-300 text-black font-bold mt-5 hover:bg-yellow-400'>로그인</button>
+                                <Link href='/' className='bg-green-300 text-black font-bold hover:bg-green-400 text-center'>돌아가기</Link>
+                            </form>
+                        </div>
+                    </section>
+                )}
+            </div>
+        </section>
 
-        </div>
     )
 
 }
