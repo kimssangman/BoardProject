@@ -26,10 +26,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={sans.className}>
-            <body className="flex flex-col w-full max-w-screen mx-auto">
+            <body className='flex flex-col w-full max-w-screen mx-auto'>
                 <Header />
                 <MainBanner />
-                <main className="flex-grow bg-gray-700">{children}</main>
+                <main className='grow bg-gray-50'>{children}</main>
                 <Footer />
             </body>
         </html>

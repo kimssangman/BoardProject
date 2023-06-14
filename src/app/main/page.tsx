@@ -33,7 +33,7 @@ export default function Profile() {
     let users = use<User[]>(getUsers());
 
     return (
-        <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20 }}>
+        <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20, background: 'blue' }}>
             <div
                 style={{
                     display: "grid",
@@ -49,7 +49,7 @@ export default function Profile() {
                         <img
                             src={`https://robohash.org/${user.id}?set=set2&size=180x180`}
                             alt={user.name}
-                            style={{ height: 180, width: 180 }}
+                            style={{ height: 180, width: 180, margin: 'auto' }}
                         />
                         <h3>{user.name}</h3>
                     </div>
