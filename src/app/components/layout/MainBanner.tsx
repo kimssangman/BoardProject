@@ -5,6 +5,7 @@ import MainBanner_button from './MainBanner_button';
 import { useRouter } from "next/navigation";
 
 
+
 export default function MainBanner() {
     const router = useRouter();
     const [title, setTitle] = useState({ title: '대시보드', path: '' })
@@ -12,7 +13,7 @@ export default function MainBanner() {
 
     const HandleDataFromChild = (childData: any) => {
         setTitle(childData);
-        console.log('childData title >>> ', childData)
+        // console.log('자식에게 받은 data {title, path}  >>> ', childData)
 
         router.push(childData.path);
     };
@@ -29,7 +30,7 @@ export default function MainBanner() {
                     alt="Background Image"
                 />
             </div>
-            <div className="relative bg-opacity-75 bg-gray-300 pt-8 pb-3 h-[220px]">
+            <div className="relative bg-opacity-75 bg-gray-300 pt-6 h-[220px]">
                 <div className="m-auto mx-auto px-4 text-center">
                     <div>
                         <h1 className="text-5xl font-bold">{title.title}</h1>
@@ -37,7 +38,7 @@ export default function MainBanner() {
                     </div>
 
                 </div>
-                <div className='mt-12 flex justify-center'>
+                <div className='mt-[60px] flex justify-center'>
                     <MainBanner_button onData={HandleDataFromChild} selected={title} />
                 </div>
             </div>

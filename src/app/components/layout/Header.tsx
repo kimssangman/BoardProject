@@ -3,9 +3,11 @@
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
-import Time from './Time';
+import Time from '../util/Time';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+
 
 export default function Header(props: any) {
 
@@ -57,6 +59,7 @@ export default function Header(props: any) {
 
 
     const handleSignOut = () => {
+        signOut();
         router.push("/signIn");
     };
 

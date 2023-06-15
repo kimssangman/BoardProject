@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import Loading from "./Loading";
 
 export default function Time() {
     const [date, setDate] = useState<Date>();
@@ -17,5 +18,5 @@ export default function Time() {
             .{("0" + String(date.getMonth() + 1)).slice(-2)}
             .{("0" + String(date.getDate())).slice(-2)} {("0" + String(date.getHours())).slice(-2)}:{("0" + String(date.getMinutes())).slice(-2)}:{("0" + String(date.getSeconds())).slice(-2)}</>
         :
-        <>loading...</>}</>
+        <><Loading /></>}</>
 }

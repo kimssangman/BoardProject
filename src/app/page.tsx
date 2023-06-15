@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SignUp from './components/SignUpForm'
+import SignUp from './components/login/SignUpForm'
 import Link from 'next/link'
 
 export default function Home() {

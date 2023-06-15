@@ -1,7 +1,12 @@
+import BoardList from '@/app/components/main/board/BoardList';
 import React from 'react'
 
 export default function BoardPage() {
     return (
-        <div>게시판 페이지에요</div>
-    )
+        <section style={{ maxWidth: 1200, marginInline: "auto", padding: 20, background: 'blue' }}>
+
+            <BoardList />
+
+        </section>
+    );
 }

@@ -3,8 +3,9 @@
 import { signUp } from '@/services/signUp';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import Banner, { BannerData } from './Banner';
+import Banner, { BannerData } from '../util/Banner';
 import { useRouter } from "next/navigation";
+
 
 
 

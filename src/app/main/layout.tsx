@@ -1,10 +1,11 @@
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-
+import Footer from '../components/layout/Footer';
+import Header from '../components/layout/Header';
+import MainBanner from '../components/layout/MainBanner';
 
 import { Open_Sans } from 'next/font/google';
-import MainBanner from '../components/MainBanner';
-import { useState } from 'react';
+
+
+
 
 const sans = Open_Sans({ subsets: ['latin'] });
 

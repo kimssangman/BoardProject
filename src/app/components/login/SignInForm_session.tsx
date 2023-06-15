@@ -2,10 +2,13 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import Banner, { BannerData } from './Banner';
+import Banner, { BannerData } from '../util/Banner';
 import Link from 'next/link';
 // import { signIn } from '@/services/signIn';
 import { signIn, useSession } from "next-auth/react";
+import Loading from '../util/Loading';
+
+
 
 
 
@@ -120,8 +123,9 @@ export default function SignInForm() {
 
 
     if (loading) {
-        <p>로딩 중</p>
-        return
+        return <div className='flex justify-center items-center w-screen h-screen'>
+            <Loading />
+        </div>
     }
 
 
@@ -131,7 +135,10 @@ export default function SignInForm() {
                 {banner && <Banner banner={banner} />}
 
                 {session.status === "authenticated" ? (
-                    <p>로그인 성공! Main 페이지로 이동합니다...</p>
+                    <div className='flex justify-center items-center w-screen h-screen'>
+                        <Loading />
+                    </div>
+
                 ) : (
                     <section className='flex justify-center items-center w-screen h-screen'>
                         <div>

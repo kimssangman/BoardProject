@@ -1,5 +1,6 @@
 import React from 'react'
-import SignInForm from '../components/SignInForm_session'
+import SignInForm from '../components/login/SignInForm_session'
+
 
 export default function SignInPage() {
     return (
