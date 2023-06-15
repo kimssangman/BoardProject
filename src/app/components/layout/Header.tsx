@@ -64,16 +64,6 @@ export default function Header(props: any) {
     };
 
     return (
-        // <header className="fixed z-10 border-b border-[#ddd] h-[85px] w-screen leading-[85px] bg-white">
-        //     <h1 className="inline-block absolute left-[6%] text-cyan-700 font-bold ">
-        //         <Link href={"/"} className='text-2xl'>반가워요</Link>
-        //     </h1>
-        //     <div className="max-w-screen-xl mx-auto px-14">
-        //         <nav className="float-right px-4 sm:px-0">
-        //             <button onClick={handleSignOut}>로그아웃</button>
-        //         </nav>
-        //     </div>
-        // </header>
         <header className="fixed z-10 border-b border-[#ddd] h-[85px] w-screen leading-[85px] bg-white" >
             <div className="max-w-screen-2xl mx-auto">
                 <Link href="/main" className="float-left inline-flex absolute left-[6%]">
@@ -81,8 +71,8 @@ export default function Header(props: any) {
                     <span>반갑습니다</span>
                 </Link>
 
-                <nav className="w-[480px] float-right">
-                    <p className="w-[180px] float-left border-r border-borderColor">
+                <nav className="w-[630px] float-right">
+                    <p className="w-[230px] float-left border-r border-borderColor mx-5">
                         <Time />
                     </p>
                     <div ref={dropdownRef} className="relative inline-block text-left">
