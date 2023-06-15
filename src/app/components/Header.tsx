@@ -85,7 +85,7 @@ export default function Header(props: any) {
                     <div ref={dropdownRef} className="relative inline-block text-left">
                         <div onClick={toggleDropdown} className="cursor-pointer">
                             <Image src="/images/profile.png" width={30} height={30} alt="user" className="inline-block ml-[40px]" />
-                            <span className="ml-[20px]">{session?.data?.user.name}</span>
+                            <span className="ml-[20px]">{session?.data?.user.name} 님</span>
                         </div>
 
                         {isOpen && (
