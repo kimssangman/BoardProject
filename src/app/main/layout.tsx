@@ -4,6 +4,7 @@ import Header from '../components/Header';
 
 import { Open_Sans } from 'next/font/google';
 import MainBanner from '../components/MainBanner';
+import { useState } from 'react';
 
 const sans = Open_Sans({ subsets: ['latin'] });
 

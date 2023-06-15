@@ -7,7 +7,7 @@ import Time from './Time';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function Header() {
+export default function Header(props: any) {
 
     const router = useRouter();
 
@@ -30,6 +30,8 @@ export default function Header() {
     useEffect(() => {
         setIsOpen(false);
     }, []);
+
+
 
     /**--------------------------------------------------------------------
      * 상민
@@ -59,9 +61,19 @@ export default function Header() {
     };
 
     return (
-        <header className="fixed w-screen bg-white z-10 h-[85px] leading-[70px] border-b text-textColor border-borderColor mb-[40px] shadow shadow-[#DBDBDB]">
-            <div className="w-[1300px] m-auto relative">
-                <Link href="/main" className="float-left inline-flex">
+        // <header className="fixed z-10 border-b border-[#ddd] h-[85px] w-screen leading-[85px] bg-white">
+        //     <h1 className="inline-block absolute left-[6%] text-cyan-700 font-bold ">
+        //         <Link href={"/"} className='text-2xl'>반가워요</Link>
+        //     </h1>
+        //     <div className="max-w-screen-xl mx-auto px-14">
+        //         <nav className="float-right px-4 sm:px-0">
+        //             <button onClick={handleSignOut}>로그아웃</button>
+        //         </nav>
+        //     </div>
+        // </header>
+        <header className="fixed z-10 border-b border-[#ddd] h-[85px] w-screen leading-[85px] bg-white" >
+            <div className="max-w-screen-2xl mx-auto">
+                <Link href="/main" className="float-left inline-flex absolute left-[6%]">
                     <Image src="/images/profile.png" width={30} height={40} alt="logo" className="pt-[10px]" />
                     <span>반갑습니다</span>
                 </Link>
