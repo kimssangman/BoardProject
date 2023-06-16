@@ -8,7 +8,10 @@ import React, { useEffect, useState } from 'react'
 // selected props를 같이 넘겨주려다가 그냥 item과 title이 같은 것을 찾았음
 export default function MainBanner_button(props: any, selected: any) {
 
-    const router = useRouter()
+    /**------------------------------
+     * 현재 라우팅 path를 확인
+     ------------------------------*/
+    const pathName = usePathname()
 
     const buttonList = [
         { title: '대시보드', path: 'main' },
@@ -19,10 +22,8 @@ export default function MainBanner_button(props: any, selected: any) {
     ];
 
 
-
-
     /**------------------------------
-     * Provider 사용하여 전역 Data 사용하기
+     * Provider 사용하여 cache 된 Data 사용하기
      ------------------------------*/
     const { pathData, mutate } = usePath();
     useEffect(() => {
@@ -32,14 +33,8 @@ export default function MainBanner_button(props: any, selected: any) {
 
 
 
-    /**------------------------------
-     * 현재 라우팅 path를 확인하여 /main일 경우
-     * mainBanner_button li의 색상 변경하기 위한 코드
-     ------------------------------*/
-    const pathName = usePathname()
-    // useEffect(() => {
-    //     setPageData(pageData)
-    // }, [pageData]);
+
+
 
 
 
