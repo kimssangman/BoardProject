@@ -32,12 +32,6 @@ export default function MainBanner_button(props: any, selected: any) {
     }, []);
 
 
-
-
-
-
-
-
     /**--------------------------------------
      * 자식 컴포넌트 -> 부모 컴포넌트 데이터 전달
      * 
@@ -51,11 +45,6 @@ export default function MainBanner_button(props: any, selected: any) {
 
     // }, [pageData]);
 
-
-
-    /**--------------------------------------
-     * 새로고침해도 해당 페이지에 머무르기
-     --------------------------------------*/
 
 
 
