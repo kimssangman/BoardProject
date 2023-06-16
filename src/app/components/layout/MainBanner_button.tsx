@@ -14,11 +14,11 @@ export default function MainBanner_button(props: any, selected: any) {
     const pathName = usePathname()
 
     const buttonList = [
-        { title: '대시보드', path: 'main' },
-        { title: '게시판', path: 'main/board' },
-        { title: '정보', path: 'main/information' },
-        { title: '실적', path: 'main/board' },
-        { title: '홍보자료', path: 'main/information' }
+        { title: '대시보드', path: '/main' },
+        { title: '게시판', path: '/main/board' },
+        { title: '정보', path: '/main/information' },
+        { title: '실적', path: '/main/performance' },
+        { title: '자료', path: '/main/data' }
     ];
 
 
@@ -54,7 +54,7 @@ export default function MainBanner_button(props: any, selected: any) {
                 buttonList.map((item, index) => (
 
                     // className={`${isClicked ? '클릭 시 추가되길 원하는 클래스명' : ''} 클릭여부 관계없이 필요한 클래스명들`}
-                    <li className={`${pathName === item.title ? 'bg-gray-50' : 'bg-gray-900 bg-opacity-50 text-white'} px-[84.5px] py-2  cursor-pointer`} key={index} onClick={() => props.onData({ title: item.title, path: item.path })}>{item.title}</li>
+                    <li className={`${pathName === item.path ? 'bg-gray-50' : 'bg-gray-900 bg-opacity-50 text-white'} px-[84.5px] py-2  cursor-pointer`} key={index} onClick={() => props.onData({ title: item.title, path: item.path })}>{item.title}</li>
                 ))
             }
         </ul>

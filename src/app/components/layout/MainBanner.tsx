@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import MainBanner_button from './MainBanner_button';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 
 
@@ -11,12 +11,27 @@ export default function MainBanner() {
     const router = useRouter();
     const [title, setTitle] = useState({ title: '대시보드', path: '/main' })
 
+    /**------------------------------
+     * 현재 라우팅 path를 확인
+     ------------------------------*/
+    const pathName = usePathname()
+
+    const buttonList = [
+        { title: '대시보드', path: '/main' },
+        { title: '게시판', path: '/main/board' },
+        { title: '정보', path: '/main/information' },
+        { title: '실적', path: '/main/board' },
+        { title: '홍보자료', path: '/main/information' }
+    ];
+
+    const description = buttonList.filter(item => item.path === pathName)
 
     const HandleDataFromChild = (childData: any) => {
         setTitle(childData);
         console.log('자식에게 받은 data {title, path}  >>> ', childData)
 
-        router.push(childData?.path);
+
+        router.replace(childData?.path);
     };
 
 
@@ -34,8 +49,8 @@ export default function MainBanner() {
             <div className="relative bg-opacity-75 bg-gray-300 pt-6 h-[220px]">
                 <div className="m-auto mx-auto px-4 text-center">
                     <div>
-                        <h1 className="text-5xl font-bold">{title.title}</h1>
-                        <p className="text-lg mt-4">{title.title} 페이지입니다.</p>
+                        <h1 className="text-5xl font-bold">{description[0].title}</h1>
+                        <p className="text-lg mt-4">{description[0].title} 페이지입니다.</p>
                     </div>
 
                 </div>
