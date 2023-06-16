@@ -1,14 +1,15 @@
 'use client'
 
-import { usePathname } from 'next/navigation';
+import usePath from '@/data/use-path';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-
 
 
 // selected props를 같이 넘겨주려다가 그냥 item과 title이 같은 것을 찾았음
 export default function MainBanner_button(props: any, selected: any) {
 
-    const [pageData, setPageData] = useState({ title: '대시보드', path: '/main' });
+    const router = useRouter()
+
     const buttonList = [
         { title: '대시보드', path: 'main' },
         { title: '게시판', path: 'main/board' },
@@ -18,16 +19,27 @@ export default function MainBanner_button(props: any, selected: any) {
     ];
 
 
+
+
+    /**------------------------------
+     * Provider 사용하여 전역 Data 사용하기
+     ------------------------------*/
+    const { pathData, mutate } = usePath();
+    useEffect(() => {
+        // console.log('mainBanner >>>>>>>', pageData)
+        console.log('mainBanner >>>>>>>', pathData)
+    }, []);
+
+
+
     /**------------------------------
      * 현재 라우팅 path를 확인하여 /main일 경우
      * mainBanner_button li의 색상 변경하기 위한 코드
      ------------------------------*/
     const pathName = usePathname()
-    useEffect(() => {
-        if (pathName === '/main') {
-            setPageData({ title: '대시보드', path: 'main' })
-        }
-    }, [pathName]);
+    // useEffect(() => {
+    //     setPageData(pageData)
+    // }, [pageData]);
 
 
 
@@ -37,12 +49,18 @@ export default function MainBanner_button(props: any, selected: any) {
      * 자식 컴포넌트 : props.onData를 사용하여 값을 넘긴다
      * 부모 컴포넌트 : <ChildComponent onData={HandleDataFromChild}></ChildComponent> 부모 handler로 데이터 처리
      --------------------------------------*/
-    useEffect(() => {
-        // 콜백 함수를 호출하여 데이터를 전달
-        props.onData(pageData);
-    }, [pageData]);
+    // useEffect(() => {
+
+    //     // 콜백 함수를 호출하여 데이터를 전달
+    //     props.onData(pageData);
+
+    // }, [pageData]);
 
 
+
+    /**--------------------------------------
+     * 새로고침해도 해당 페이지에 머무르기
+     --------------------------------------*/
 
 
 
@@ -52,7 +70,7 @@ export default function MainBanner_button(props: any, selected: any) {
                 buttonList.map((item, index) => (
 
                     // className={`${isClicked ? '클릭 시 추가되길 원하는 클래스명' : ''} 클릭여부 관계없이 필요한 클래스명들`}
-                    <li className={`${pageData.title === item.title ? 'bg-gray-50' : 'bg-gray-900 bg-opacity-50 text-white'} px-[84.5px] py-2  cursor-pointer`} key={index} onClick={() => setPageData({ title: item.title, path: item.path })}>{item.title}</li>
+                    <li className={`${pathName === item.title ? 'bg-gray-50' : 'bg-gray-900 bg-opacity-50 text-white'} px-[84.5px] py-2  cursor-pointer`} key={index} onClick={() => props.onData({ title: item.title, path: item.path })}>{item.title}</li>
                 ))
             }
         </ul>

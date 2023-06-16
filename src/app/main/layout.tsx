@@ -1,3 +1,4 @@
+import Provider from '@/context/Provider';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import MainBanner from '../components/layout/MainBanner';
@@ -29,10 +30,13 @@ export default function RootLayout({
     return (
         <html lang="en" className={sans.className}>
             <body className='flex flex-col w-full max-w-screen mx-auto'>
-                <Header />
-                <MainBanner />
-                <main className='grow bg-gray-50'>{children}</main>
-                <Footer />
+                {/* provider를 사용하여 전역변수 사용하기 */}
+                <Provider>
+                    <Header />
+                    <MainBanner />
+                    <main className='grow bg-gray-50'>{children}</main>
+                    <Footer />
+                </Provider>
             </body>
         </html>
     )

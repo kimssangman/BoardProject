@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function createData(
     index: number,
@@ -25,7 +27,18 @@ const rows = [
     createData(1, '한국도로공사 최우수현장 선정', '2023.01.01', 9),
 ];
 
+// export function goPage() {
+//     const router = useRouter();
+//     router.push('/main/board/1')
+// }
+
 export default function TableForm() {
+    const router = useRouter();
+
+    const goPage = (e: any) => {
+        console.log(e)
+        router.replace('/main/board/1')
+    }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -39,7 +52,7 @@ export default function TableForm() {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow
+                        <TableRow onClick={goPage}
                             key={row.index}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
