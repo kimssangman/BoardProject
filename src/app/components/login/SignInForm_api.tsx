@@ -4,19 +4,19 @@
  --------------------------------------------*/
 
 
-'use client'
+// 'use client'
 
-import { useRouter } from 'next/navigation';
-import React, { ChangeEvent, FormEvent, useState } from 'react'
-import Banner, { BannerData } from './Banner';
-import Link from 'next/link';
-// import { signIn } from '@/services/signIn';
+// import { useRouter } from 'next/navigation';
+// import React, { ChangeEvent, FormEvent, useState } from 'react'
+// import Banner, { BannerData } from './Banner';
+// import Link from 'next/link';
+// import { signIn } from '@/services/login/signIn';
 
 
-type Form = {
-    id: string,
-    pw: string
-}
+// type Form = {
+//     id: string,
+//     pw: string
+// }
 
 
 // export default function SignInForm() {

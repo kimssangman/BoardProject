@@ -1,7 +1,10 @@
+'use client'
+
 import { getServerSession } from 'next-auth'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './providers'
+import { RecoilRoot } from 'recoil';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +17,7 @@ export const metadata = {
     }
 }
 
-export default async function RootLayout({
+export default function RootLayout({
     children,
 }: {
     children: React.ReactNode
@@ -24,7 +27,12 @@ export default async function RootLayout({
         <html lang="en">
             <body>
                 {/* 만든 Provider로 자식 컴포넌트 감싸 모든 컴포넌트 guard를 담당합니다.*/}
-                <NextAuthProvider>{children}</NextAuthProvider>
+                <NextAuthProvider>
+                    {/* Recoil 상태관리 라이브러리 */}
+                    <RecoilRoot>
+                        {children}
+                    </RecoilRoot>
+                </NextAuthProvider>
             </body>
         </html>
     )

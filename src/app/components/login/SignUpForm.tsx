@@ -1,6 +1,6 @@
 'use client';
 
-import { signUp } from '@/services/signUp';
+import { signUp } from '@/services/login/signUp';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import Banner, { BannerData } from '../util/Banner';

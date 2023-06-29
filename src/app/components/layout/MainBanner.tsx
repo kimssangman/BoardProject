@@ -21,7 +21,8 @@ export default function MainBanner() {
         { title: '게시판', path: '/main/board' },
         { title: '정보', path: '/main/information' },
         { title: '실적', path: '/main/board' },
-        { title: '홍보자료', path: '/main/information' }
+        { title: '홍보자료', path: '/main/information' },
+        { title: '게시글 작성', path: '/main/board/write' },
     ];
 
     const description = buttonList.filter(item => item.path === pathName)
@@ -48,10 +49,19 @@ export default function MainBanner() {
             </div>
             <div className="relative bg-opacity-75 bg-gray-300 pt-6 h-[220px]">
                 <div className="m-auto mx-auto px-4 text-center">
-                    <div>
-                        <h1 className="text-5xl font-bold">{description[0].title}</h1>
-                        <p className="text-lg mt-4">{description[0].title} 페이지입니다.</p>
-                    </div>
+                    {
+                        description.length > 0 ?
+                            (<div>
+                                <h1 className="text-5xl font-bold">{description[0]?.title}</h1>
+                                <p className="text-lg mt-4">{description[0]?.title} 페이지입니다.</p>
+                            </div>)
+                            :
+                            (<div>
+                                <h1 className="text-5xl font-bold">상세 페이지</h1>
+                                <p className="text-lg mt-4">상세 페이지입니다.</p>
+                            </div>)
+                    }
+
 
                 </div>
                 <div className='mt-[60px] flex justify-center'>

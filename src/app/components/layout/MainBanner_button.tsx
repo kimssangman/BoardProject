@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 
+
 // selected props를 같이 넘겨주려다가 그냥 item과 title이 같은 것을 찾았음
 export default function MainBanner_button(props: any, selected: any) {
 
@@ -52,7 +53,6 @@ export default function MainBanner_button(props: any, selected: any) {
         <ul className='flex text-xl gap-1'>
             {
                 buttonList.map((item, index) => (
-
                     // className={`${isClicked ? '클릭 시 추가되길 원하는 클래스명' : ''} 클릭여부 관계없이 필요한 클래스명들`}
                     <li className={`${pathName === item.path ? 'bg-gray-50' : 'bg-gray-900 bg-opacity-50 text-white'} px-[84.5px] py-2  cursor-pointer`} key={index} onClick={() => props.onData({ title: item.title, path: item.path })}>{item.title}</li>
                 ))

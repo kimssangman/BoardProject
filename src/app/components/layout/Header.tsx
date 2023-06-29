@@ -7,7 +7,8 @@ import Time from '../util/Time';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-
+import { useRecoilState } from 'recoil';
+import { textState } from '@/recoil/atoms/states';
 
 export default function Header(props: any) {
 
@@ -32,7 +33,6 @@ export default function Header(props: any) {
     useEffect(() => {
         setIsOpen(false);
     }, []);
-
 
 
     /**--------------------------------------------------------------------
