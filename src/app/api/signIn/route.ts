@@ -4,17 +4,17 @@
  --------------------------------------------*/
 
 
-import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
-import dbConnect from '@/lib/db/dbConnect';
-import User from '@/lib/db/user/user.model';
-import * as yup from 'yup';
-import { NextRequest, NextResponse } from 'next/server'
+// import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
+// import dbConnect from '@/lib/db/dbConnect';
+// import User from '@/lib/db/user/user.model';
+// import * as yup from 'yup';
+// import { NextRequest, NextResponse } from 'next/server'
 
 
-const bodySchema = yup.object().shape({
-    id: yup.string().required(),
-    pw: yup.string().required(),
-});
+// const bodySchema = yup.object().shape({
+//     id: yup.string().required(),
+//     pw: yup.string().required(),
+// });
 
 
 // export async function GET(request: NextRequest) {

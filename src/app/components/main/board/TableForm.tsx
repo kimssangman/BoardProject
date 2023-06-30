@@ -13,29 +13,12 @@ import { postList } from '@/services/board/postList';
 import { useEffect, useState } from 'react';
 
 
-function createData(
-    index: number,
-    title: string,
-    date: string,
-    views: number,
-) {
-    return { index, title, date, views };
-}
-
-const rows = [
-    createData(5, '흑석 한강 센트레빌 입주', '2023.07.07', 5),
-    createData(4, '굿디자인 4건 선정', '2023.05.02', 37),
-    createData(3, '해상풍력발전사업 진출 본격 시동', '2023.02.04', 5),
-    createData(2, '전세 사기 급증', '2023.01.09', 11),
-    createData(1, '한국도로공사 최우수현장 선정', '2023.01.01', 9),
-];
-
-
 
 export default function TableForm() {
     const router = useRouter();
 
     const [post, setPost] = useState([]);
+    const [reverseIndex, setReverseIndex] = useState(0);
 
     useEffect(() => {
         getPostList();
@@ -45,8 +28,11 @@ export default function TableForm() {
         try {
             const response = await postList();
             setPost(response); // 데이터를 변수에 저장
-
             console.log(response); // 업데이트된 데이터 확인
+
+            setReverseIndex(response.length) // 인덱스 길이를 변수에 저장
+
+
         } catch (error) {
             // 오류 처리
         }
@@ -72,10 +58,10 @@ export default function TableForm() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {post.map((row: any, index) => (
+                    {post.reverse().map((row: any, index) => (
                         <TableRow onClick={() => goPage(row)} key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row" align="center">
-                                {index}
+                                {reverseIndex - index}
                             </TableCell>
                             <TableCell align="left">{row.title}</TableCell>
                             <TableCell align="right">{row.updatedAt}</TableCell>
