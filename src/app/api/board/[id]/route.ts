@@ -15,7 +15,11 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         --------------------------------------*/
         await dbConnect();
 
-        const board = await Board.find();
+        const board = await Board.findOne({
+            _id: params.id
+        });
+
+        console.log(board)
 
         if (board) {
             return new NextResponse(JSON.stringify(board), {

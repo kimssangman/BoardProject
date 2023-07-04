@@ -4,7 +4,6 @@ export async function detailPost(_id: any) {
     const res = await fetch(`/api/board/${_id}`)
 
     const data = await res.json();
-    console.log(data)
 
     return data
 }
