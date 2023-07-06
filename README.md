@@ -1,3 +1,12 @@
+# buld
+npm run build
+
+# start 
+npm run dev
+
+# build start
+npm run start
+
 # SWR 참고
 
 https://velog.io/@gene028/NextJS-%EC%A7%80%EB%8F%84-%EA%B0%9C%EB%B0%9C-2-SWR%EB%A1%9C-%EC%A0%84%EC%97%AD-%EC%83%81%ED%83%9C-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0
