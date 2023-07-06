@@ -15,38 +15,35 @@ import moment from 'moment';
 
 
 
-export default function TableForm() {
+export default function TableForm({ searchValue }: any) {
     const router = useRouter();
-
     const [post, setPost] = useState([]);
+    const [filteredPost, setFilteredPost] = useState([]);
 
     useEffect(() => {
         getPostList();
     }, []);
 
+    useEffect(() => {
+        // 검색값이 변경될 때마다 데이터 필터링
+        const filteredPost = post.filter((row: any) => row.title.includes(searchValue));
+        // 필터링된 데이터 설정
+        setFilteredPost(filteredPost);
+    }, [searchValue, post]);
+
     const getPostList = async () => {
         try {
             const response = await postList();
             setPost(response); // 데이터를 변수에 저장
-            console.log(response); // 업데이트된 데이터 확인
         } catch (error) {
             // 오류 처리
         }
     };
 
-
     // 게시글 상세보기
     const goPage = (item: any) => {
-        router.replace(`/main/board/${item._id}`)
-    }
-
-
-    /**------------------------
-     * MUI Material UI
-     * https://mui.com/material-ui/getting-started/
-     * 
-     * table 사용 (https://mui.com/material-ui/react-table/)
-     */
+        router.replace(`/main/board/${item._id}`);
+    };
 
     return (
         <TableContainer component={Paper}>
@@ -60,7 +57,7 @@ export default function TableForm() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {post.map((row: any, index) => (
+                    {filteredPost.map((row: any, index) => (
                         <TableRow onClick={() => goPage(row)} key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row" align="center">
                                 {row.index}
