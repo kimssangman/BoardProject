@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { postList } from '@/services/board/postList';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 
 
@@ -18,7 +19,6 @@ export default function TableForm() {
     const router = useRouter();
 
     const [post, setPost] = useState([]);
-    const [reverseIndex, setReverseIndex] = useState(0);
 
     useEffect(() => {
         getPostList();
@@ -29,10 +29,6 @@ export default function TableForm() {
             const response = await postList();
             setPost(response); // 데이터를 변수에 저장
             console.log(response); // 업데이트된 데이터 확인
-
-            setReverseIndex(response.length) // 인덱스 길이를 변수에 저장
-
-
         } catch (error) {
             // 오류 처리
         }
@@ -45,6 +41,12 @@ export default function TableForm() {
     }
 
 
+    /**------------------------
+     * MUI Material UI
+     * https://mui.com/material-ui/getting-started/
+     * 
+     * table 사용 (https://mui.com/material-ui/react-table/)
+     */
 
     return (
         <TableContainer component={Paper}>
@@ -58,13 +60,13 @@ export default function TableForm() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {post.reverse().map((row: any, index) => (
+                    {post.map((row: any, index) => (
                         <TableRow onClick={() => goPage(row)} key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row" align="center">
-                                {reverseIndex - index}
+                                {row.index}
                             </TableCell>
                             <TableCell align="left">{row.title}</TableCell>
-                            <TableCell align="right">{row.updatedAt}</TableCell>
+                            <TableCell align="right">{moment(row.createdAt).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
                             <TableCell align="center">{row.title}</TableCell>
                         </TableRow>
                     ))}

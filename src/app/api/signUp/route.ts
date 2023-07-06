@@ -1,4 +1,3 @@
-import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
 import dbConnect from '@/lib/db/dbConnect';
 import User from '@/lib/db/user/user.model';
 import * as yup from 'yup';
@@ -12,7 +11,7 @@ const bodySchema = yup.object().shape({
 
 export async function POST(req: Request, res: Response) {
     const body = await req.json();
-    
+
     if (!bodySchema.isValidSync(body)) {
         return new Response(JSON.stringify({ message: '회원가입에 실패함!' }), {
             status: 400,
@@ -30,7 +29,6 @@ export async function POST(req: Request, res: Response) {
         --------------------------------------*/
         await dbConnect();
         const { id, name, pw } = body;
-        const index = await getNextSequenceValue("index");
 
         /**--------------------------------------
         * password 해싱
@@ -42,7 +40,7 @@ export async function POST(req: Request, res: Response) {
         /**--------------------------------------
         * 저장
         --------------------------------------*/
-        const signUp = new User({ index, id, name, pw: hashedPass });
+        const signUp = new User({ id, name, pw: hashedPass });
         await signUp.save();
 
         return new NextResponse(JSON.stringify({ message: '회원가입에 성공함!' }), {

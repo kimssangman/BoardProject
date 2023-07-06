@@ -11,7 +11,23 @@ export async function GET(response: NextResponse) {
         --------------------------------------*/
         await dbConnect();
 
-        const board = await Board.find();
+        const board = await Board.aggregate([
+            {
+                $project: {
+                    index: 1,
+                    title: 1,
+                    contents1: 1,
+                    contents2: 1,
+                    createdAt: 1
+                }
+            },
+            {
+                $sort: {
+                    index: -1
+                }
+            }
+        ])
+
 
         if (board) {
             return new NextResponse(JSON.stringify(board), {

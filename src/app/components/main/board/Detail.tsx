@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import { CodeBlock, dracula } from "react-code-blocks";
 
 import { detailPost } from '@/services/board/detail';
+
 
 
 interface Post {
@@ -10,6 +12,12 @@ interface Post {
     contents1: string;
     contents2: string;
 }
+
+type Theme = {
+    // Other properties...
+    mode?: string;
+    // Other properties...
+};
 
 
 export default function Detail(props: any) {
@@ -34,15 +42,33 @@ export default function Detail(props: any) {
     };
 
 
+    /**--------------------------------------------
+     * Code Block 사용하기
+     * 
+     * npm i react-code-blocks
+     * 
+     * https://www.npmjs.com/package/react-code-blocks
+     --------------------------------------------*/
 
 
     return (
         <section>
             {response && (
                 <>
-                    <div>{response.title}</div>
-                    <div>{response.contents1}</div>
-                    <div>{response.contents2}</div>
+                    <div>
+                        <div>{response.title}</div>
+                        <div>{response.contents1}</div>
+
+                        <CodeBlock
+                            text={response.contents2}
+                            language='python'
+                            showLineNumbers={true}
+                            startingLineNumber={1} // startingLineNumber 속성 추가
+                            wrapLongLines={false} // wrapLongLines 속성 추가
+                            theme={{ ...dracula, mode: 'dark' }}
+                        />
+                    </div>
+
                 </>
             )}
         </section>

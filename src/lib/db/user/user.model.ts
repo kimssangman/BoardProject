@@ -3,9 +3,6 @@ import mongoose, { Schema } from "mongoose";
 
 export const UserSchema = new Schema(
     {
-        index: {
-            type: Number,
-        },
         id: {
             type: String,
             required: true,

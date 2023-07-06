@@ -1,3 +1,4 @@
+import { getNextSequenceValue } from '@/lib/db/counter/counter.model';
 import dbConnect from '@/lib/db/dbConnect';
 import Board from '@/lib/db/board/Board.model';
 import * as yup from 'yup';
@@ -29,12 +30,12 @@ export async function POST(req: Request, res: Response) {
         --------------------------------------*/
         await dbConnect();
         const { title, contents1, contents2 } = body;
-
+        const index = await getNextSequenceValue("index");
 
         /**--------------------------------------
         * 저장
         --------------------------------------*/
-        const savePost = new Board({ title, contents1, contents2 });
+        const savePost = new Board({ index, title, contents1, contents2 });
         await savePost.save();
 
         return new NextResponse(JSON.stringify({ message: '게시글 작성 성공함!' }), {

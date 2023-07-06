@@ -3,6 +3,9 @@ import mongoose, { Schema } from "mongoose";
 
 export const BoardSchema = new Schema(
     {
+        index: {
+            type: Number,
+        },
         title: {
             type: String,
             required: true,
