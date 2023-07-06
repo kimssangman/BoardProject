@@ -27,11 +27,12 @@ export default function Search({ onSearch }: any) {
                     <div className="flex rounded-md overflow-hidden w-[100%]">
                         <input
                             type="text"
+                            placeholder='제목을 입력하세요.'
                             className="w-full rounded-md rounded-r-none"
                             value={searchValue}
                             onChange={handleInputChange}
                         />
-                        <button className="bg-indigo-600 text-white px-6 text-lg font-semibold py-1 rounded-r-md" type="submit">
+                        <button className="bg-blue-500 text-white px-6 text-lg font-semibold py-1 rounded-r-md" type="submit">
                             Search
                         </button>
                     </div>
