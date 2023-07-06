@@ -1,8 +1,8 @@
 import { authOptions } from "@/lib/session-auth";
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function POST(request: NextRequest, response: NextResponse) {
     const session = await getServerSession(authOptions);
 
     console.log('session/route', session)

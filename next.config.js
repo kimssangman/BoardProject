@@ -3,9 +3,9 @@ const nextConfig = {
     experimental: {
         appDir: true,
     },
-    images: {
-        domains: ['images.unsplash.com'],
+    compiler: {
+        removeConsole: true
     },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
