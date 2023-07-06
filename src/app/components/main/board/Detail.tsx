@@ -59,14 +59,14 @@ export default function Detail(props: any) {
                         <div>{response.title}</div>
                         <div>{response.contents1}</div>
 
-                        <CodeBlock
+                        {/* <CodeBlock
                             text={response.contents2}
                             language='python'
                             showLineNumbers={true}
                             startingLineNumber={1} // startingLineNumber 속성 추가
                             wrapLongLines={false} // wrapLongLines 속성 추가
                             theme={{ ...dracula, mode: 'dark' }}
-                        />
+                        /> */}
                     </div>
 
                 </>

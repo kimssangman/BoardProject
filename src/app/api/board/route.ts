@@ -1,8 +1,8 @@
 import dbConnect from '@/lib/db/dbConnect';
 import Board from '@/lib/db/board/Board.model';
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(response: NextResponse) {
+export async function GET(request: NextRequest) {
 
     try {
 
