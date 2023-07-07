@@ -19,8 +19,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
             _id: params.id
         });
 
-        console.log(board)
-
         if (board) {
             return new NextResponse(JSON.stringify(board), {
                 status: 200,
@@ -33,3 +31,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         });
     }
 }
+
+
+
+/**------------------------------------------
+ * GET 경로 처리기는 객체 와 함께 메서드를 사용할 때 기본적으로 정적으로 만들어지기 때문에
+ * 
+ * 동적으로 데이터를 받을 때 눈속임으로 POST로 만들어준다..
+ * 그럴거면 POST 쓰지 왜....
+ ------------------------------------------*/
+export async function POST() { }

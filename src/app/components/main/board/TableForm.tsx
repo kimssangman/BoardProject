@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { postList } from '@/services/board/postList';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
+import ResponseCache from 'next/dist/server/response-cache';
 
 
 
@@ -41,6 +42,9 @@ export default function TableForm({ searchValue }: any) {
 
     const getPostList = async () => {
         try {
+            // api를 다이나믹으로 쓰려면 cache 옵션을 쓰라는데.....
+            // const response = await (await fetch('/api/board', { cache: 'no-store' })).json();
+
             const response = await postList();
             setPost(response); // 데이터를 변수에 저장
         } catch (error) {

@@ -35,7 +35,6 @@ export default function Detail(props: any) {
         try {
             const response: any = await detailPost(props.pageId);
             setPost(response);
-            console.log(response);
         } catch (error) {
             // 오류 처리
         }

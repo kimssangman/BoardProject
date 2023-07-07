@@ -105,7 +105,6 @@ export default function SignInForm() {
 
             setLoading(false);
 
-            console.log(res);
             if (res?.error == null) {
                 router.push(callbackUrl);
             } else {
