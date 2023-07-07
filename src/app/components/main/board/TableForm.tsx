@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation';
 import { postList } from '@/services/board/postList';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import ResponseCache from 'next/dist/server/response-cache';
 
 
 
