@@ -1,6 +1,7 @@
+
 // 게시글 목록 가져오기
 export async function postList() {
-    const response = await fetch('/api/board');
+    const response = await fetch('/api/board', { cache: 'no-store' });
 
     const data = await response.json();
 
