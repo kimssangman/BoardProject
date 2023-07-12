@@ -7,6 +7,7 @@ import Link from 'next/link';
 // import { signIn } from '@/services/signIn';
 import { signIn, useSession } from "next-auth/react";
 import Loading from '../util/Loading';
+import Image from 'next/image';
 
 
 
@@ -141,17 +142,16 @@ export default function SignInForm() {
                 ) : (
                     <section className='flex justify-center items-center w-screen h-screen'>
                         <div>
-                            <form onSubmit={onSubmit} className='w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white'>
-                                <p className='text-center'>로그인</p>
-                                <span className='w-full border-2'></span>
+                            <form onSubmit={onSubmit} className='flex flex-col border p-[50px] bg-white rounded-[40px] drop-shadow-xl'>
+                                <Image src="/images/login_ani.gif" width={200} height={200} alt="logo" className='m-auto' />
                                 {/* id */}
-                                <label htmlFor="id" className='font-semibold'>Id</label>
-                                <input className='text-black' type="text" id='id' name="id" required autoFocus value={form.id} onChange={onChange} />
+                                <label htmlFor="id" className='font-semibold'>ID</label>
+                                <input className='bg-gray-200 shadow-inner rounded-l p-2 flex-1' type="text" id='id' name="id" required autoFocus value={form.id} onChange={onChange} />
                                 {/* pw */}
                                 <label htmlFor="pw" className='font-semibold'>PW</label>
-                                <input className='text-black' type="password" id='pw' name="pw" required autoFocus value={form.pw} onChange={onChange} />
-                                <button className='bg-yellow-300 text-black font-bold mt-5 hover:bg-yellow-400'>로그인</button>
-                                <Link href='/' className='bg-green-300 text-black font-bold hover:bg-green-400 text-center'>돌아가기</Link>
+                                <input className='bg-gray-200 shadow-inner rounded-l p-2 flex-1' type="password" id='pw' name="pw" required autoFocus value={form.pw} onChange={onChange} />
+                                <button className='border hover:bg-yellow-400 rounded-xl py-1 px-4 mt-8 drop-shadow-xl border-yellow-300 bg-yellow-400'>로그인</button>
+                                <Link href='/' className='border hover:bg-gray-200 rounded-xl py-1 px-4 mt-3 drop-shadow-xl text-center'>돌아가기</Link>
                             </form>
                         </div>
                     </section>
